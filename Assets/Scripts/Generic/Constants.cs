@@ -5,6 +5,8 @@
         public static string MainScene = "MainScene";
         
         public static string StartScene = "StartScene";
+
+        public static string CurrentLevelPlayerPref = "CurrentLevel";
         
         public static string BallTag = "Ball";
         

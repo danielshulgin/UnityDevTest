@@ -1,4 +1,5 @@
 ﻿using System;
+using Generic;
 using UnityEngine;
 
 namespace Data
@@ -9,11 +10,11 @@ namespace Data
 
         public int CurrentLevel
         {
-            get => PlayerPrefs.GetInt("CurrentLevel", 1);
+            get => PlayerPrefs.GetInt(Constants.CurrentLevelPlayerPref, 1);
             private set
             {
                 OnLevelChanged?.Invoke(value);
-                PlayerPrefs.SetInt("CurrentLevel", value);
+                PlayerPrefs.SetInt(Constants.CurrentLevelPlayerPref, value);
             }
         }
         

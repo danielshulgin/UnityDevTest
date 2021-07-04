@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Mechanics
 {
     [RequireComponent(typeof(Rigidbody))]
-    public class Ball : MonoBehaviour
+    public class BallMove : MonoBehaviour
     {
         public event Action OnEnemyHit;
         

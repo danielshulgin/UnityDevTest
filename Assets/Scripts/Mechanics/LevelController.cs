@@ -15,7 +15,7 @@ namespace Flow
         
         private PlayerData _playerData;
 
-        public bool AllBlockDestroyed => leftEnemyBlock.Destroyed && rightEnemyBlock.Destroyed && middleEnemyBlock.Destroyed;
+        private bool AllBlockDestroyed => leftEnemyBlock.Destroyed && rightEnemyBlock.Destroyed && middleEnemyBlock.Destroyed;
 
                 
         [Inject]

@@ -1,5 +1,6 @@
 ﻿using MyInput;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Zenject;
 
 namespace Mechanics
@@ -18,11 +19,11 @@ namespace Mechanics
         
         [SerializeField] private Transform playerStartTransform;
         
-        [SerializeField] private Ball ball;
+        [SerializeField] private BallMove ballMove;
         
         [SerializeField] private GameObject playerGameObject;
         
-        [SerializeField] private Arrow arrow;
+        [SerializeField] private ArrowScaler arrowScaler;
         
         private ClickManager _clickManager;
         
@@ -43,8 +44,8 @@ namespace Mechanics
 
         private void Awake()
         {
-            ball.OnEnemyHit += HandleBallHit;
-            ball.OnEnemyBlockHit += HandleBallHit;
+            ballMove.OnEnemyHit += HandleBallHit;
+            ballMove.OnEnemyBlockHit += HandleBallHit;
         }
 
         private void OnDestroy()
@@ -56,41 +57,41 @@ namespace Mechanics
 
         private void HandleStartSwipe(Touch touch)
         {
-            if (ball.Launched) return;
+            if (ballMove.Launched) return;
 
             if (TouchToFieldPosition(touch, out var fieldPosition))
             {
                 _swiping = true;
-                arrow.gameObject.SetActive(true);
+                arrowScaler.gameObject.SetActive(true);
             }
         }
         
         private void HandleSwipe(Touch touch)
         {
-            if (!_swiping && ball.Launched) return;
+            if (!_swiping && ballMove.Launched) return;
             
             if (TouchToFieldPosition(touch, out var fieldPosition))
             {
                 fieldPosition = ClampFieldPosition(fieldPosition);
                 var playerPosition = new Vector3(fieldPosition.x, playerStartTransform.position.y, fieldPosition.z);
                 playerGameObject.transform.position = playerPosition;
-                arrow.gameObject.SetActive(true);
+                arrowScaler.gameObject.SetActive(true);
                 var swipeDirection = fieldPosition - ballStartTransform.position;
-                arrow.UpdatePosition(playerPosition, swipeDirection);
+                arrowScaler.UpdatePosition(playerPosition, swipeDirection);
             }
         }
 
         private void HandleEndSwipe(Touch touch)
         {
-            if (!_swiping && ball.Launched) return;
+            if (!_swiping && ballMove.Launched) return;
             
             if (TouchToFieldPosition(touch, out var fieldPosition))
             {
                 fieldPosition = ClampFieldPosition(fieldPosition);
                 var swipeDirection = fieldPosition - ballStartTransform.position;
-                ball.Launch(swipeDirection * speedK);
+                ballMove.Launch(swipeDirection * speedK);
                 _swiping = false;
-                arrow.gameObject.SetActive(false);
+                arrowScaler.gameObject.SetActive(false);
                 ResetPlayer();
             }
         }
@@ -108,9 +109,9 @@ namespace Mechanics
 
         private void ResetBall()
         {
-            ball.ResetBall();
-            ball.transform.position = ballStartTransform.position;
-            ball.transform.rotation = ballStartTransform.rotation;
+            ballMove.ResetBall();
+            ballMove.transform.position = ballStartTransform.position;
+            ballMove.transform.rotation = ballStartTransform.rotation;
         }
 
         private Vector3 ClampFieldPosition(Vector3 fieldPosition)

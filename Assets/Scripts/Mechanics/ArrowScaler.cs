@@ -2,7 +2,7 @@
 
 namespace Mechanics
 {
-    public class Arrow : MonoBehaviour
+    public class ArrowScaler : MonoBehaviour
     {
         [SerializeField] private SpriteRenderer arrowSpriteRenderer;
         

@@ -10,6 +10,7 @@ namespace Mechanics
 
         public bool Destroyed { get; private set; }
 
+        
         private void OnCollisionEnter(Collision other)
         {
             if (other.gameObject.CompareTag(Constants.BallTag))
