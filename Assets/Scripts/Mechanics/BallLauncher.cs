@@ -1,7 +1,5 @@
-﻿using System;
-using MyInput;
+﻿using MyInput;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Zenject;
 
 namespace Mechanics

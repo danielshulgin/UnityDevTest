@@ -1,10 +1,7 @@
-﻿using System;
-using Data;
-using Flow;
+﻿using Data;
 using TMPro;
 using UI.Generic;
 using UnityEngine;
-using UnityEngine.Rendering.VirtualTexturing;
 using Zenject;
 
 namespace UI
